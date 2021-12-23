@@ -151,7 +151,8 @@ public class WallpaperManagerPlugin implements FlutterPlugin, MethodCallHandler 
                 Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                 result = wm.setBitmap(bitmap, new Rect(left, top, right, bottom), false, wallpaperLocation);
             } else {
-                String assetLookupKey = FlutterLoader.getInstance().getLookupKeyForAsset(assetPath);
+                FlutterLoader loader = FlutterInjector.instance().flutterLoader();
+                String assetLookupKey = loader.getLookupKeyForAsset(assetPath);
                 AssetManager assetManager = context.getAssets();
                 AssetFileDescriptor assetFileDescriptor = assetManager.openFd(assetLookupKey);
                 InputStream inputStream = assetFileDescriptor.createInputStream();
